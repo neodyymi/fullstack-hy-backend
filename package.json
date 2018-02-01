@@ -1,0 +1,29 @@
+{
+  "name": "fullstack-hy-backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "node_modules/.bin/nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neodyymi/fullstack-hy-backend.git"
+  },
+  "author": "Ville-Veikko Saari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neodyymi/fullstack-hy-backend/issues"
+  },
+  "homepage": "https://github.com/neodyymi/fullstack-hy-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+}

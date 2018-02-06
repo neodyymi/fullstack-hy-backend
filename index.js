@@ -82,8 +82,9 @@ app.post('/api/persons', (req, res) => {
 
   person
     .save()
-    .then(savedPerson => {
-      res.json(Person.format(savedPerson))
+    .then(Person.format)
+    .then(savedAndFormattedPerson => {
+      res.json(savedAndFormattedPerson)
     })
     .catch(error => {
       console.log(error)
@@ -106,8 +107,9 @@ app.put('/api/persons/:id', (req, res) => {
 
   Person
     .findByIdAndUpdate(req.params.id, person, { new: true } )
-    .then(updatedPerson => {
-      res.json(Person.format(updatedPerson))
+    .then(Person.format)
+    .then(updatedAndFormattedPerson => {
+      res.json(updatedAndFormattedPerson)
     })
     .catch(error => {
       console.log(error)

@@ -8,17 +8,23 @@ const Puhelinluettelo = ({persons, delFunc}) => {
       <table>
         <tbody>
           {persons.map(person => (
-            <tr key={person.id}>
-              <td>{person.name}</td>
-              <td>{person.number}</td>
-              <td>
-                <button onClick={delFunc(person)}>Delete</button>
-              </td>
-            </tr>
+            <Person person={person} delFunc={delFunc}/>
           ))}
         </tbody>
       </table>
     </div>
+  )
+}
+
+const Person = ({person, delFunc}) => {
+  return(
+    <tr key={person.id}>
+      <td>{person.name}</td>
+      <td>{person.number}</td>
+      <td>
+        <button onClick={delFunc(person)}>Delete</button>
+      </td>
+    </tr>
   )
 }
 

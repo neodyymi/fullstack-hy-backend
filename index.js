@@ -6,7 +6,7 @@ const cors = require('cors')
 
 const Person = require('./models/person')
 
-morgan.token('post_data', function (req, res) { return JSON.stringify(req.body) })
+morgan.token('post_data', function (req) { return JSON.stringify(req.body) })
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -18,20 +18,18 @@ app.get('/', (req, res) => {
 })
 
 app.get('/info', (req, res) => {
-  let count = 0
   Person.count({})
     .then(c => {
       res.send(`
       <p>Puhelinluettelossa on ${c} henkilön tiedot. </p>
       <p>${new Date()}</p>
       `)
-  })
-  
+    })
 })
 
 app.get('/api/persons', (req, res) => {
   Person
-    .find({}, {__v: 0})
+    .find({}, { __v: 0 })
     .then(persons => {
       res.json(persons.map(Person.format))
     })
@@ -60,10 +58,10 @@ app.get('/api/persons/:id', (req, res) => {
 
 app.delete('/api/persons/:id', (req, res) => {
   Person.findByIdAndRemove(req.params.id)
-    .then(result => {
+    .then(() => {
       res.status(204).end()
     })
-    .catch(error => {
+    .catch(() => {
       res.status(400).send({ error: 'malformatted id' })
     })
 })
@@ -72,7 +70,7 @@ app.post('/api/persons', (req, res) => {
   const body = req.body
 
   if (body.name === undefined || body.number === undefined) {
-    return res.status(400).json({error: 'content missing'})
+    return res.status(400).json({ error: 'content missing' })
   }
 
   const person = new Person({
@@ -94,7 +92,6 @@ app.post('/api/persons', (req, res) => {
         res.status(400).send({ error: 'Malformed data' })
       }
     })
-    
 })
 
 app.put('/api/persons/:id', (req, res) => {

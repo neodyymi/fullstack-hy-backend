@@ -16,7 +16,7 @@ const personSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
-  number: String})
+  number: String })
 
 personSchema.statics.format = (person) => {
   return {
